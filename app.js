@@ -13,6 +13,8 @@ const usersRouter = require("./routes/users");
 const aboutRouter = require("./routes/about");
 
 var app = express();
+
+
 var oktaClient = new okta.Client({
   orgUrl: '{https://dev-549978.okta.com}',
   token: '{00CFgY6I1Sge99IOHb3HgPyLjwNL1GTeDHUmGbfnQ6}'
@@ -42,6 +44,8 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));;
+
+//Session set up
 app.use(session({
   secret : 'kguysdisubfskusfysdbsdvlhb',
   resave: true,

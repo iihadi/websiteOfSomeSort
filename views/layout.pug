@@ -12,10 +12,10 @@ html(lang="en")
   body
   div.top-bar.d-flex.flex-column.flex-md-row.align-items-center.p-3.px-md-4.mb-3.bg-white.border-bottom.box-shadow
     h5.my-0.mr-md-auto.font-weight-normal
-      a(href="/", title="Expresso") Some sort of website
+      a(href="/", title="Some sort of website") Some sort of website
     nav.my-2.my-md-0.mr-md-3
       a.p-2.text-dark(href="/", title="Home") Home
-      a.p-2.text-dark(href="/", title="About") About
+      a.p-2.text-dark(href="/about", title="About") About (doesn't work)
       if user == undefined
         a.p-2.text-dark(href="/users/login") Log In / Register (doesn't work)
       else
@@ -25,4 +25,4 @@ html(lang="en")
     block content
 
   footer.
-    Built with a whole lotta blood, sweat and tears x 
+    Built with a whole lotta love x 
