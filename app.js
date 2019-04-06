@@ -10,6 +10,7 @@ var ExpressOIDC = require("@okta/oidc-middleware").ExpressOIDC;
 const dashboardRouter = require("./routes/dashboard");
 const publicRouter = require("./routes/public");
 const usersRouter = require("./routes/users");
+const aboutRouter = require("./routes/about");
 
 var app = express();
 var oktaClient = new okta.Client({
@@ -51,7 +52,6 @@ app.use((req, res, next) => {
   if (!req.userinfo) {
     return next();
   }
-
   oktaClient.getUser(req.userinfo.sub)
     .then(user => {
       req.user = user;
@@ -71,8 +71,10 @@ function loginRequired(req, res, next) {
   }
 
 app.use('/', publicRouter);
+app.use('/about', aboutRouter);
 app.use('/dashboard', loginRequired, dashboardRouter);
 app.use('/users', usersRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
