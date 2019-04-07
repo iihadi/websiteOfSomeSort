@@ -16,13 +16,13 @@ var app = express();
 
 
 var oktaClient = new okta.Client({
-  orgUrl: '{https://dev-549978.okta.com}',
-  token: '{00CFgY6I1Sge99IOHb3HgPyLjwNL1GTeDHUmGbfnQ6}'
+  orgUrl: 'https://dev-549978.okta.com',
+  token: '00CFgY6I1Sge99IOHb3HgPyLjwNL1GTeDHUmGbfnQ6'
 });
 const oidc = new ExpressOIDC({
-  issuer: "{https://dev-549978.okta.com}/oauth2/default",
-  client_id: '{0oafpoeusBFUQbb9V356}',
-  client_secret: '{_nn0dDzXmpGGfGpD4vkuz_4UuLTgWWDOIcHCu9oG}',
+  issuer: "https://dev-549978.okta.com/oauth2/default",
+  client_id: '0oafpoeusBFUQbb9V356',
+  client_secret: '_nn0dDzXmpGGfGpD4vkuz_4UuLTgWWDOIcHCu9oG',
   redirect_uri: 'http://localhost:3000/users/callback',
   scope: "openid profile",
   routes: {
@@ -47,11 +47,13 @@ app.use(express.static(path.join(__dirname, 'public')));;
 
 //Session set up
 app.use(session({
-  secret : 'kguysdisubfskusfysdbsdvlhb',
+  secret : 'asdf;lkjh3lkjh235l23h5l235kjh',
   resave: true,
   saveUninitialized: false
 }))
+
 app.use(oidc.router);
+
 app.use((req, res, next) => {
   if (!req.userinfo) {
     return next();
