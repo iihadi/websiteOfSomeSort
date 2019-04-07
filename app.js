@@ -11,6 +11,7 @@ const dashboardRouter = require("./routes/dashboard");
 const publicRouter = require("./routes/public");
 const usersRouter = require("./routes/users");
 const aboutRouter = require("./routes/about");
+const weatherRouter = require("./routes/about");
 
 var app = express();
 
@@ -81,6 +82,7 @@ app.use('/', publicRouter);
 app.use('/about', aboutRouter);
 app.use('/dashboard', loginRequired, dashboardRouter);
 app.use('/users', usersRouter);
+app.use('/weather', weatherRouter);
 
 
 // catch 404 and forward to error handler
