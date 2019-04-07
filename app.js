@@ -10,6 +10,7 @@ const dashboardRouter = require('./routes/dashboard')
 const publicRouter = require('./routes/public')
 const usersRouter = require('./routes/users')
 const aboutRouter = require('./routes/about')
+const weatherRouter = require('./routes/weather')
 
 var app = express()
 
@@ -76,6 +77,7 @@ function loginRequired (req, res, next) {
 // Testing the github
 app.use('/', publicRouter)
 app.use('/about', aboutRouter)
+app.use('/weather', weatherRouter)
 app.use('/dashboard', loginRequired, dashboardRouter)
 app.use('/users', usersRouter)
 
