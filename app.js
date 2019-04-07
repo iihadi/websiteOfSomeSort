@@ -76,6 +76,7 @@ function loginRequired(req, res, next) {
   next();
   }
 
+//Testing the github
 app.use('/', publicRouter);
 app.use('/about', aboutRouter);
 app.use('/dashboard', loginRequired, dashboardRouter);
