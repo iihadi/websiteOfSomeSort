@@ -10,17 +10,20 @@ var ExpressOIDC = require("@okta/oidc-middleware").ExpressOIDC;
 const dashboardRouter = require("./routes/dashboard");
 const publicRouter = require("./routes/public");
 const usersRouter = require("./routes/users");
+const aboutRouter = require("./routes/about");
 
 var app = express();
+
+
 var oktaClient = new okta.Client({
-  orgUrl: '{https://dev-549978.okta.com}',
-  token: '{00CFgY6I1Sge99IOHb3HgPyLjwNL1GTeDHUmGbfnQ6}'
+  orgUrl: 'https://dev-549978.okta.com',
+  token: '00CFgY6I1Sge99IOHb3HgPyLjwNL1GTeDHUmGbfnQ6'
 });
 const oidc = new ExpressOIDC({
-  issuer: "{https://dev-549978.okta.com}/oauth2/default",
-  client_id: '{0oafpoeusBFUQbb9V356}',
-  client_secret: '{_nn0dDzXmpGGfGpD4vkuz_4UuLTgWWDOIcHCu9oG}',
-  redirect_uri: 'http://localhost:3000/users/callback',
+  issuer: "https://dev-549978.okta.com/oauth2/default",
+  client_id: '0oafpoeusBFUQbb9V356',
+  client_secret: '_nn0dDzXmpGGfGpD4vkuz_4UuLTgWWDOIcHCu9oG',
+  redirect_uri: 'https://some-sort-of-website.herokuapp.com/users/callback',
   scope: "openid profile",
   routes: {
     login: {
@@ -41,17 +44,20 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));;
+
+//Session set up
 app.use(session({
-  secret : 'kguysdisubfskusfysdbsdvlhb',
+  secret : 'asdf;lkjh3lkjh235l23h5l235kjh',
   resave: true,
   saveUninitialized: false
 }))
+
 app.use(oidc.router);
+
 app.use((req, res, next) => {
   if (!req.userinfo) {
     return next();
   }
-
   oktaClient.getUser(req.userinfo.sub)
     .then(user => {
       req.user = user;
@@ -71,8 +77,10 @@ function loginRequired(req, res, next) {
   }
 
 app.use('/', publicRouter);
+app.use('/about', aboutRouter);
 app.use('/dashboard', loginRequired, dashboardRouter);
 app.use('/users', usersRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,6 +1,12 @@
 .top-bar a {
   text-decoration: none;
   color: inherit;
+  border-radius: 10px;
+}
+
+.top-bar a:hover {
+  background-color: #e9ecef;
+  color: inherit;
 }
 
 footer {
@@ -13,8 +19,14 @@ footer {
 
 h2 {
   margin-bottom: 2em;
+  border-radius: 10px;
 }
 
 .container {
   padding-top: 2em;
+  border-radius: 10px;
+}
+
+.jumbotron {
+  font-size: 17px;
 }
