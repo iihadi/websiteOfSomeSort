@@ -18,26 +18,27 @@ block content
             input.form-control( name="city" type="text" placeholder="Enter City Name" required='required')  
             | &nbsp;&nbsp;
             button.btn.btn-primary(type="submit") Fetch 
-    hr      button.btn.btn-primary(type="submit") Convert to Celsius  
+    hr          
+    p
     p
     strong Weather Forecast #{forecast}
     table.table
       thead
         tr
-          th Longitude/Latitude
-          th Pressure
-          th Temperature
-          th Humidty
-          th Speed
+          th Longitude/Latitude 
+          th Pressure / hpa
+          th Temperature / °C
+          th Humidty / %
+          th Speed / m/s
         tbody 
           if body
             tr
             td
-              #{body.coord.lon} / #{body.coord.lon}
+              #{body.coord.lon} / #{body.coord.lat}
             td 
               #{body.main.pressure}
             td
-              #{body.main.temp}
+              #{(body.main.temp-273).toFixed(2)} 
             td
               #{body.main.humidity}
             td

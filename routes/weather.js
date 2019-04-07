@@ -28,7 +28,7 @@ router.post('/', function (req, res, next) {
     }
 
     let country = (body.sys.country) ? body.sys.country : ''
-    let forecast = 'For city: ' + city + ', country: ' + country
+    let forecast = ' for the city, ' + city + ' in the country, ' + country
 
     res.render('weather', { body: body, forecast: forecast })
   })
