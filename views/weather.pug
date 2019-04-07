@@ -11,40 +11,34 @@ block content
     h2
       p
         | Getting the weather using the Open Weather API
-      br
-      br
         .row
         form.form-inline(method="post", action="weather")
           .form-group
             label.sr-only(for="inputEmail") City Name
             input.form-control( name="city" type="text" placeholder="Enter City Name" required='required')  
-            |    
+            | &nbsp;&nbsp;
             button.btn.btn-primary(type="submit") Fetch 
     hr          
-.row
-  .col-md-12
     p
-      br
-      br
-      strong Weather Forecast #{forecast}
+    p
+    strong Weather Forecast #{forecast}
     table.table
       thead
         tr
-          th Longitude/Latitude
-          
-          th Pressure
-          th Temprature
-          th Humidty
-          th Speed
+          th Longitude/Latitude 
+          th Pressure / hpa
+          th Temperature / °C
+          th Humidty / %
+          th Speed / m/s
         tbody 
           if body
             tr
             td
-              #{body.coord.lon} / #{body.coord.lon}
+              #{body.coord.lon} / #{body.coord.lat}
             td 
               #{body.main.pressure}
             td
-              #{body.main.temp}
+              #{(body.main.temp-273).toFixed(2)} 
             td
               #{body.main.humidity}
             td
@@ -52,4 +46,4 @@ block content
           else
           tr
             td(colspan="6")
-              | Enter city name and click Fetch Weather button
+              | Enter city name and then click the fetch weather button
