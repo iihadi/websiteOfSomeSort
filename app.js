@@ -11,7 +11,7 @@ const dashboardRouter = require("./routes/dashboard");
 const publicRouter = require("./routes/public");
 const usersRouter = require("./routes/users");
 const aboutRouter = require("./routes/about");
-const weatherRouter = require("./routes/about");
+const weatherRouter = require("./routes/weather");
 
 var app = express();
 
